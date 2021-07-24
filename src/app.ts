@@ -1,6 +1,13 @@
 import * as MRE from '@microsoft/mixed-reality-extension-sdk';
 
 const HELP_BUTTON_POSITION = {x: 0.5, y: 0.5, z: 0}
+const WELCOME_TEXT = `
+Welcome! Let's chat and explore Altspace.
+
+Commands: (coming soon)
+
+Learn more at github.com/tuesy/jimmybot
+`;
 
 export default class App {
   public assets: MRE.AssetContainer;
@@ -14,9 +21,7 @@ export default class App {
     this.createHelpButton();
   }
 
-  private createHelpButton() {
-    let text = `Welcome to the Directory!\n\nhelp\n\nLearn more at github.com/tuesy/jimmybot`;
-    const button = MRE.Actor.CreateFromLibrary(this.context, {
+  private createHelpButton() {    const button = MRE.Actor.CreateFromLibrary(this.context, {
       resourceId: 'artifact:1579238405710021245',
       actor: {
         name: 'Help Button',
@@ -25,9 +30,10 @@ export default class App {
       }
     });
     button.setBehavior(MRE.ButtonBehavior).onClick(user => {
-      user.prompt(text, true).then(res => {
+      user.prompt(WELCOME_TEXT, true).then(res => {
         if (res.submitted) {
             // clicked 'OK'
+
         }
         else {
             // clicked 'Cancel'
