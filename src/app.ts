@@ -1,10 +1,14 @@
 import * as MRE from '@microsoft/mixed-reality-extension-sdk';
 
 const HELP_BUTTON_POSITION = {x: 0, y: 0.1, z: 0}
-const HELP_BUTTON_TEXT = `
-Welcome! Let's chat and explore Altspace.
+const HELP_BUTTON_TEXT = `What is my purpose?
+You help Altspacers.
 
-Commands: (coming soon)
+I respond to:
+
+
+
+Enter a command and click "OK".
 
 Learn more at github.com/tuesy/jimmybot
 `;
@@ -29,7 +33,7 @@ export default class App {
     this.infoText = MRE.Actor.Create(this.context, {
       actor: {
         name: 'Info Text',
-        transform: { local: { position: { x: 0, y: 1, z: 0 } } },
+        transform: { local: { position: { x: 0, y: 0.8, z: 0 } } },
         collider: { geometry: { shape: MRE.ColliderType.Box, size: { x: 0.5, y: 0.2, z: 0.01 } } },
         text: {
           contents: WELCOME_TEXT,
@@ -54,7 +58,7 @@ export default class App {
       user.prompt(HELP_BUTTON_TEXT, true).then(res => {
         if(res.submitted){
           if(res.text.length == 0){
-            this.infoText.text.contents = `Sorry, ENTER doesn't work right now.\n\nPlease click 'OK'`;
+            this.infoText.text.contents = `Enter a command and click "OK".`;
           }
           else{
             this.infoText.text.contents = this.resultMessageFor(res.text);
@@ -72,7 +76,13 @@ export default class App {
   }
 
   private resultMessageFor(query: string){
-    return `Search results for:\n\n"${query}"`;
+    query = query.toLowerCase();
+    switch(query){
+      case 'help':
+        return `......`;
+      default:
+        return `Sorry, I don't know that one.`
+    }
   }
 
 }
