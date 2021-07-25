@@ -66,6 +66,7 @@ export default class App {
         }
         else{
           // user clicked 'Cancel'
+          this.infoText.text.contents = WELCOME_TEXT;
         }
       })
       .catch(err => {
