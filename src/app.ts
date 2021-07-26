@@ -4,15 +4,20 @@ const HELP_BUTTON_POSITION = {x: 0, y: 0.1, z: 0}
 const HELP_BUTTON_TEXT = `What is my purpose?
 You help Altspacers.
 
-I respond to:
-
-
+'top' - Top things to do in Altspace
 
 Enter a command and click "OK".
 
 Learn more at github.com/tuesy/jimmybot
 `;
 const WELCOME_TEXT = 'JimmyBot 1.0'
+const TOPTHINGS = `Top Things to do in Altspace
+- Take a relaxing boat ride in "Journey to the Cove" (VAL222)
+- Bounce around in "Jump Park" (JOR455)
+- Explore the "Madana Lounge" (EKH984)
+- Play basketball in "Space Court 1.5" (THE262)
+- Watch sunrise/sunset in "Enchanged Meadow" (DON006)
+`
 
 export default class App {
   public assets: MRE.AssetContainer;
@@ -57,12 +62,7 @@ export default class App {
     button.setBehavior(MRE.ButtonBehavior).onClick(user => {
       user.prompt(HELP_BUTTON_TEXT, true).then(res => {
         if(res.submitted){
-          if(res.text.length == 0){
-            this.infoText.text.contents = `Enter a command and click "OK".`;
-          }
-          else{
-            this.infoText.text.contents = this.resultMessageFor(res.text);
-          }
+          this.infoText.text.contents = this.resultMessageFor(res.text);
         }
         else{
           // user clicked 'Cancel'
@@ -79,6 +79,8 @@ export default class App {
   private resultMessageFor(query: string){
     query = query.toLowerCase();
     switch(query){
+      case 'top':
+        return TOPTHINGS;
       case 'help':
         return `......`;
       default:
