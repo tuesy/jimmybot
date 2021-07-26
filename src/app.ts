@@ -5,6 +5,7 @@ const HELP_BUTTON_TEXT = `What is my purpose?
 You help Altspacers.
 
 'top' - Top things to do in Altspace
+'sg1' - Stargate addresses
 
 Enter a command and click "OK".
 
@@ -17,6 +18,11 @@ const TOPTHINGS = `Top Things to do in Altspace
 - Explore the "Madana Lounge" (EKH984)
 - Play basketball in "Space Court 1.5" (THE262)
 - Watch sunrise/sunset in "Enchanged Meadow" (DON006)
+`
+const STARGATE_ADDRESSES = `Stargate Addresses:
+
+ttttttt - Stargate Commmand, Earth
+yMIrtMa (cpital 'i') - Abydos
 `
 
 export default class App {
@@ -81,8 +87,8 @@ export default class App {
     switch(query){
       case 'top':
         return TOPTHINGS;
-      case 'help':
-        return `......`;
+      case 'sg1':
+        return STARGATE_ADDRESSES;
       default:
         return `Sorry, I don't know that one.`
     }
