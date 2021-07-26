@@ -23,6 +23,8 @@ const STARGATE_ADDRESSES = `Stargate Addresses:
 
 ttttttt - Stargate Commmand, Earth
 yMIrtMa (cpital 'i') - Abydos
+EooFzva - Chulak
+ozhhvHa - Cold Lazarus
 `
 
 export default class App {
