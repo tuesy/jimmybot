@@ -14,7 +14,7 @@ Enter a command and click "OK".
 
 Learn more at github.com/tuesy/jimmybot
 `;
-const WELCOME_TEXT = 'JimmyBot 1.0'
+const WELCOME_TEXT = 'JimmyBot 1.1'
 const TOPTHINGS = `Top Things to do in Altspace
 - Take a relaxing boat ride in "Journey to the Cove" (VAL222)
 - Bounce around in "Jump Park" (JOR455)
