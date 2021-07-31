@@ -63,7 +63,12 @@ export default class App {
       resourceId: 'artifact:1579238405710021245',
       actor: {
         name: 'Help Button',
-        transform: { local: { position: HELP_BUTTON_POSITION } },
+        transform: {
+          local: {
+            position: HELP_BUTTON_POSITION,
+            rotation: MRE.Quaternion.FromEulerAngles(0, MRE.DegreesToRadians * 90, 0)
+          }
+        },
         collider: { geometry: { shape: MRE.ColliderType.Box, size: { x: 0.5, y: 0.2, z: 0.01 } } }
       }
     });
