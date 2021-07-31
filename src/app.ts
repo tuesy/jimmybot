@@ -1,5 +1,8 @@
 import * as MRE from '@microsoft/mixed-reality-extension-sdk';
 
+const fetch = require('node-fetch');
+const utf8 = require('utf8');
+
 const HELP_BUTTON_POSITION = {x: 0, y: 0.1, z: 0}
 const HELP_BUTTON_TEXT = `What is my purpose?
 You help Altspacers.
@@ -89,16 +92,27 @@ export default class App {
     return button;
   }
 
-  private resultMessageFor(query: string){
+  private async resultMessageFor(query: string){
     query = query.toLowerCase();
+    let response = null
     switch(query){
       case 'top':
         return TOPTHINGS;
       case 'sg1':
         return STARGATE_ADDRESSES;
       default:
-        return `Sorry, I don't know that one.`
+        let uri = "https://jimmybot.azurewebsites.net/qnamaker/knowledgebases/bce0aa7c-2947-40c9-a11a-fd3c9936b41f/generateAnswer";
+        this.infoText.text.contents = await fetch(uri, {
+          method: 'POST',
+          body: JSON.stringify({'question': query}), // need to convert to JSON here!
+          headers: {
+            'Content-type': 'application/json',
+            'Authorization': 'EndpointKey d34b45ac-1907-48a8-82c1-4d5a046fa031'
+          }
+        }).then((res: any) => res.json()).then((json: any) =>
+          json['answers'][0]['answer']
+        );
+        break;
     }
   }
-
 }
