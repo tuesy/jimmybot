@@ -78,7 +78,7 @@ export default class App {
     button.setBehavior(MRE.ButtonBehavior).onClick(user => {
       user.prompt(HELP_BUTTON_TEXT, true).then(res => {
         if(res.submitted){
-          this.resultMessageFor(user, res.text);
+          this.respondTo(user, res.text);
         }
         else{
           // user clicked 'Cancel'
@@ -92,13 +92,15 @@ export default class App {
     return button;
   }
 
-  private async resultMessageFor(user: MRE.User, query: string){
+  private async respondTo(user: MRE.User, query: string){
     query = query.toLowerCase();
     switch(query){
       case 'top':
-        return TOPTHINGS;
+        this.infoText.text.contents = TOPTHINGS;
+        break;
       case 'sg1':
-        return STARGATE_ADDRESSES;
+        this.infoText.text.contents = STARGATE_ADDRESSES;
+        break;
       default:
         let uri = "https://jimmybot.azurewebsites.net/qnamaker/knowledgebases/bce0aa7c-2947-40c9-a11a-fd3c9936b41f/generateAnswer";
         this.infoText.text.contents = await fetch(uri, {
