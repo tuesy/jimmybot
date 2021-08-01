@@ -3,7 +3,7 @@ import * as MRE from '@microsoft/mixed-reality-extension-sdk';
 const fetch = require('node-fetch');
 const utf8 = require('utf8');
 
-const HELP_BUTTON_POSITION = {x: 0, y: 0.1, z: 0}
+const HELP_BUTTON_POSITION = {x: 0, y: 0.6, z: 0}
 const HELP_BUTTON_TEXT = `What is my purpose?
 You help Altspacers.
 
@@ -49,7 +49,7 @@ export default class App {
     this.infoText = MRE.Actor.Create(this.context, {
       actor: {
         name: 'Info Text',
-        transform: { local: { position: { x: 0, y: 0.8, z: 0 } } },
+        transform: { local: { position: { x: 0, y: 0, z: 0 } } },
         collider: { geometry: { shape: MRE.ColliderType.Box, size: { x: 0.5, y: 0.2, z: 0.01 } } },
         text: {
           contents: WELCOME_TEXT,
@@ -72,7 +72,7 @@ export default class App {
             rotation: MRE.Quaternion.FromEulerAngles(0, MRE.DegreesToRadians * 90, 0)
           }
         },
-        collider: { geometry: { shape: MRE.ColliderType.Box, size: { x: 0.5, y: 0.2, z: 0.01 } } }
+        collider: { geometry: { shape: MRE.ColliderType.Box, size: { x: 0.5, y: 0.5, z: 0.5 } } }
       }
     });
     button.setBehavior(MRE.ButtonBehavior).onClick(user => {
