@@ -78,7 +78,7 @@ export default class App {
     button.setBehavior(MRE.ButtonBehavior).onClick(user => {
       user.prompt(HELP_BUTTON_TEXT, true).then(res => {
         if(res.submitted){
-          this.infoText.text.contents = this.resultMessageFor(res.text);
+          this.resultMessageFor(user, res.text);
         }
         else{
           // user clicked 'Cancel'
@@ -92,9 +92,8 @@ export default class App {
     return button;
   }
 
-  private async resultMessageFor(query: string){
+  private async resultMessageFor(user: MRE.User, query: string){
     query = query.toLowerCase();
-    let response = null
     switch(query){
       case 'top':
         return TOPTHINGS;
@@ -110,7 +109,8 @@ export default class App {
             'Authorization': 'EndpointKey d34b45ac-1907-48a8-82c1-4d5a046fa031'
           }
         }).then((res: any) => res.json()).then((json: any) =>
-          json['answers'][0]['answer']
+           // update text
+          `${user.name}: ${query}\nJimmyBot: ${json['answers'][0]['answer']}`
         );
         break;
     }
