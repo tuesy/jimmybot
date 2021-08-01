@@ -110,7 +110,7 @@ export default class App {
           }
         }).then((res: any) => res.json()).then((json: any) =>
            // update text
-          `${user.name}: ${query}\nJimmyBot: ${json['answers'][0]['answer']}`
+          `<color=#389eeb>${user.name}: <color=#EEEEEE>${query}\n<color=#bf92df>JimmyBot: <color=#EEEEEE>${json['answers'][0]['answer']}`
         );
         break;
     }
