@@ -102,19 +102,21 @@ export default class App {
         this.infoText.text.contents = STARGATE_ADDRESSES;
         break;
       default:
-        let uri = "https://jimmybot.azurewebsites.net/qnamaker/knowledgebases/bce0aa7c-2947-40c9-a11a-fd3c9936b41f/generateAnswer";
-        this.infoText.text.contents = await fetch(uri, {
+        this.infoText.text.contents = await fetch(process.env.WITTYBOT_URI, {
           method: 'POST',
           body: JSON.stringify({'question': query}), // need to convert to JSON here!
           headers: {
             'Content-type': 'application/json',
-            'Authorization': 'EndpointKey d34b45ac-1907-48a8-82c1-4d5a046fa031'
+            'Authorization': `EndpointKey ${process.env.WITTYBOT_KEY}`
           }
         }).then((res: any) => res.json()).then((json: any) =>
-           // update text
-          `<color=#389eeb>${user.name}: <color=#EEEEEE>${query}\n<color=#bf92df>JimmyBot: <color=#EEEEEE>${json['answers'][0]['answer']}`
+          this.formatBotResponse(user, query, json['answers'][0]['answer'])
         );
         break;
     }
+  }
+
+  private formatBotResponse(user: MRE.User, question: string, answer: string){
+    return `<color=#389eeb>${user.name}: <color=#EEEEEE>${question}\n<color=#bf92df>JimmyBot: <color=#EEEEEE>${answer}`;
   }
 }
