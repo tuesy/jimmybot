@@ -3,7 +3,7 @@ import * as MRE from '@microsoft/mixed-reality-extension-sdk';
 const fetch = require('node-fetch');
 const utf8 = require('utf8');
 
-const HELP_BUTTON_POSITION = {x: 0, y: 0.6, z: 0}
+const HELP_BUTTON_POSITION = {x: 0, y: 0.7, z: 0}
 const HELP_BUTTON_TEXT = `What is my purpose?
 You help Altspacers.
 
