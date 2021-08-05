@@ -68,8 +68,7 @@ export default class App {
         name: 'Help Button',
         transform: {
           local: {
-            position: HELP_BUTTON_POSITION,
-            rotation: MRE.Quaternion.FromEulerAngles(0, MRE.DegreesToRadians * 90, 0)
+            position: HELP_BUTTON_POSITION
           }
         },
         collider: { geometry: { shape: MRE.ColliderType.Box, size: { x: 0.5, y: 0.5, z: 0.5 } } }
