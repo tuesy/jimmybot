@@ -1,7 +1,7 @@
 import * as MRE from '@microsoft/mixed-reality-extension-sdk';
 
 const fetch = require('node-fetch');
-const utf8 = require('utf8');
+const wrap = require('word-wrap');
 
 const HELP_BUTTON_POSITION = {x: 0, y: 0.7, z: 0}
 const HELP_BUTTON_TEXT = `What is my purpose?
@@ -116,6 +116,6 @@ export default class App {
   }
 
   private formatBotResponse(user: MRE.User, question: string, answer: string){
-    return `<color=#389eeb>${user.name}: <color=#EEEEEE>${question}\n<color=#bf92df>JimmyBot: <color=#EEEEEE>${answer}`;
+    return `<color=#389eeb>${user.name}: <color=#EEEEEE>${question}\n<color=#bf92df>JimmyBot: <color=#EEEEEE>${wrap(answer)}`;
   }
 }
