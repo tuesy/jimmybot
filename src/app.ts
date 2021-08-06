@@ -3,6 +3,7 @@ import * as MRE from '@microsoft/mixed-reality-extension-sdk';
 const fetch = require('node-fetch');
 const wrap = require('word-wrap');
 
+const ANSWER_WIDTH = 70;
 const HELP_BUTTON_POSITION = {x: 0, y: 0.7, z: 0}
 const HELP_BUTTON_TEXT = `What is my purpose?
 You help Altspacers.
@@ -116,6 +117,6 @@ export default class App {
   }
 
   private formatBotResponse(user: MRE.User, question: string, answer: string){
-    return `<color=#389eeb>${user.name}: <color=#EEEEEE>${question}\n<color=#bf92df>JimmyBot: <color=#EEEEEE>${wrap(answer)}`;
+    return `<color=#389eeb>${user.name}: <color=#EEEEEE>${question}\n<color=#bf92df>${wrap('JimmyBot: <color=#EEEEEE>' + answer, {width: ANSWER_WIDTH})}`;
   }
 }
